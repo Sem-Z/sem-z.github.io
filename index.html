@@ -226,27 +226,27 @@
 </section>
 
 <script type="application/javascript">
-    Telegram.WebApp.ready();
+    window.Telegram.WebApp.ready();
 
-    const initData = Telegram.WebApp.initData || '';
-    const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+    const initData = window.Telegram.WebApp.initData || '';
+    const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
 
     document.querySelector('#greeting').innerHTML = `Hi, ${initDataUnsafe.user.first_name}!`;
     document.querySelector('#initData').innerHTML = JSON.stringify(initData, null, 2);
     document.querySelector('#initDataUnsafe').innerHTML = JSON.stringify(initDataUnsafe, null, 2);
-    document.querySelector('#themeData').html(JSON.stringify(Telegram.WebApp.themeParams, null, 2));
+    document.querySelector('#themeData').html(JSON.stringify(window.Telegram.WebApp.themeParams, null, 2));
 
-    Telegram.WebApp.MainButton
+    window.Telegram.WebApp.MainButton
         .setText('CLOSE WEBVIEW')
         .show()
         .onClick(function(){ webviewClose(); });
 
-    Telegram.WebApp.onEvent('themeChanged', function() {
-        document.querySelector('#themeData').innerHTML = JSON.stringify(Telegram.WebApp.themeParams, null, 2);
+    window.Telegram.WebApp.onEvent('themeChanged', function() {
+        document.querySelector('#themeData').innerHTML = JSON.stringify(window.Telegram.WebApp.themeParams, null, 2);
     });
 
     function toggleMainButton(el) {
-        const mainButton = Telegram.WebApp.MainButton;
+        const mainButton = window.Telegram.WebApp.MainButton;
         if (mainButton.isVisible) {
             mainButton.hide();
             el.innerHTML = 'Show Main Button';
@@ -257,17 +257,17 @@
     }
 
     function webviewExpand() {
-        Telegram.WebApp.expand();
+        window.Telegram.WebApp.expand();
     }
 
     function webviewClose() {
-        Telegram.WebApp.close();
+        window.Telegram.WebApp.close();
     }
 
     function sendTime(spam) {
         const repeat = spam ? 10 : 1;
         for (let i = 0; i < repeat; i++) {
-            Telegram.WebApp.sendData(new Date().toString());
+            window.Telegram.WebApp.sendData(new Date().toString());
         }
     }
 
